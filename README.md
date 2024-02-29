@@ -1,7 +1,10 @@
-<img src="https://github.com/zakaria-alx/AirBnB_clone_v4/blob/master/dev/HBTN-hbnb-Final.png" width="160" height=auto />
+# *0x06. AirBnB clone - Web dynamic*
 
-# AirBnB Clone: Phase # 4
-Web dynamic with JQuery
+`Python`  `Front-end  `JavaScript`
+
+By: Guillaume, CTO at Holberton School
+
+<img src="https://github.com/mohammedchakir/AirBnB_clone/assets/129831433/3374971c-c9b8-4f63-a03f-50a340f7d699" width="160" height=auto />
 
 ## Description
 
@@ -68,7 +71,7 @@ All the web dynamic Flask scripts, HTML templates and Javascript scripts are in 
   * __bash:__ ShellCheck 0.3.3
   * __javascript__: semistandard
 
-<img src="https://github.com/zakaria-alx/AirBnB_clone_v4/blob/master/dev/hbnb_step5.png" />
+![hbnb_step5](https://github.com/mohammedchakir/AirBnB_clone/assets/129831433/82eda843-6956-46af-bc28-2f13a20be4d9)
 
 ## Setup
 
@@ -200,12 +203,9 @@ create: create [ARG] [PARAM 1] [PARAM 2] ...
 
 ---
 
-## Authors
+## Authors 📑
+Project made by:
 
-V4 made by:
-  * Souheila Sidennas - [Github](https://github.com/souheilaso) / [Twitter](https://twitter.com/souheilass)  
-  * Zakaria Khonchafi - [Github](https://github.com/zakaria-alx) / [Twitter](https://twitter.com/zakaria_kh0)
+- - MOHAMMED-CHAKIR ZERROUKI <zerroukimedchakir@gmail.com>
+- SALEH ELMOUINY <elmouinysaleh@gmail.com>
 
-## License
-
-MIT License
