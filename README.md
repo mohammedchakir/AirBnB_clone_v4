@@ -1,6 +1,6 @@
 # *0x06. AirBnB clone - Web dynamic*
 
-`Python`  `Front-end  `JavaScript`
+`Python`  `Front-end`  `JavaScript`
 
 By: Guillaume, CTO at Holberton School
 
@@ -206,6 +206,6 @@ create: create [ARG] [PARAM 1] [PARAM 2] ...
 ## Authors 📑
 Project made by:
 
-- - MOHAMMED-CHAKIR ZERROUKI <zerroukimedchakir@gmail.com>
+- MOHAMMED-CHAKIR ZERROUKI <zerroukimedchakir@gmail.com>
 - SALEH ELMOUINY <elmouinysaleh@gmail.com>
 
