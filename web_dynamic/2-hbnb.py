@@ -6,9 +6,8 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from os import environ
-from flask import Flask, render_template
+from flask import Flask, render_template, requests
 import uuid
-import requests
 
 app = Flask(__name__)
 
