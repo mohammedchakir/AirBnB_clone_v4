@@ -42,10 +42,7 @@
         <div class="popover">
           <ul>
             {% for amenity in amenities %}
-            <li>
-              <input type="checkbox" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}">
-              <span style="position: absolute; left: 10px;">{{ amenity.name }}</span>
-            </li>
+            <LI><INPUT type="checkbox" data-id="{{ amenity.id }}" data-name="{{ amenity.name }}">{{ amenity.name }}</LI>
             {% endfor %}
           </ul>
         </div>
