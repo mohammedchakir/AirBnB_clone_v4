@@ -1,3 +1,4 @@
+// This JavaScript script utilizes JQuery to update Amenities dynamically.
 (document).ready(function () {
   const amenities = {};
   $('li input[type=checkbox]').change(function () {
@@ -9,6 +10,7 @@
     $('.amenities h4').text(Object.keys(amenities).sort().join('', ''));
   });
 });
+
 // Request http://0.0.0.0:5001/api/v1/status/
 $.getJSON('http://0.0.0.0:5001/api/v1/status/', function (data) {
   if (data.status === 'OK') {
