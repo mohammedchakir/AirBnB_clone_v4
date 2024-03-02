@@ -1,3 +1,4 @@
+// Tracks checkbox changes, sends POST request on button click.
 document.ready(function () {
   const HOST = 'http://127.0.0.1:5001';
   const amenities = {};
@@ -5,84 +6,84 @@ document.ready(function () {
   const states = {};
 
   $('ul li input[type="checkbox"]').bind('change', (e) => {
-    const el = e.target;
-    let tt;
-    switch (el.id) {
+	  const el = e.target;
+	  let tt;
+	  switch (el.id) {
       case 'state_filter':
-        tt = states;
-        break;
+		  tt = states;
+		  break;
       case 'city_filter':
-        tt = cities;
-        break;
+		  tt = cities;
+		  break;
       case 'amenity_filter':
-        tt = amenities;
-        break;
-    }
-    if (el.checked) {
+		  tt = amenities;
+		  break;
+	  }
+	  if (el.checked) {
       tt[el.dataset.name] = el.dataset.id;
-    } else {
+	  } else {
       delete tt[el.dataset.name];
-    }
-    if (el.id === 'amenity_filter') {
+	  }
+	  if (el.id === 'amenity_filter') {
       $('.amenities h4').text(Object.keys(amenities).sort().join(', '));
-    } else {
+	  } else {
       $('.locations h4').text(
-        Object.keys(Object.assign({}, states, cities)).sort().join(', ')
+		  Object.keys(Object.assign({}, states, cities)).sort().join(', ')
       );
-    }
+	  }
   });
 
-  // get API status from server and display it in the navbar
+  // Request http://0.0.0.0:5001/api/v1/status/
   $.getJSON('http://0.0.0.0:5001/api/v1/status/', (data) => {
-    if (data.status === 'OK') {
+	  if (data.status === 'OK') {
       $('div#api_status').addClass('available');
-    } else {
+	  } else {
       $('div#api_status').removeClass('available');
-    }
+	  }
   });
 
-  // fetch all places data from server and populate the map with
+  // Sends POST request, loops results, creates HTML articles.
   $.post({
-    url: `${HOST}/api/v1/places_search`,
-    data: JSON.stringify({}),
-    headers: {
+	  url: `${HOST}/api/v1/places_search`,
+	  data: JSON.stringify({}),
+	  headers: {
       'Content-Type': 'application/json'
-    },
-    success: (data) => {
+	  },
+	  success: (data) => {
       data.forEach((place) =>
-        $('section.places').append(
-					`<article>
-			<div class="title_box">
-			<h2>${place.name}</h2>
-			<div class="price_by_night">$${place.price_by_night}</div>
-			</div>
-			<div class="information">
-			<div class="max_guest">${place.max_guest} Guest${
-						place.max_guest !== 1 ? 's' : ''
-					}</div>
-			<div class="number_rooms">${place.number_rooms} Bedroom${
-						place.number_rooms !== 1 ? 's' : ''
-					}</div>
-			<div class="number_bathrooms">${place.number_bathrooms} Bathroom${
-						place.number_bathrooms !== 1 ? 's' : ''
-					}</div>
-			</div> 
-			<div class="description">
-			${place.description}
-			</div>
-				</article>`
-        )
+		  $('section.places').append(
+					  `<article>
+			  <div class="title_box">
+			  <h2>${place.name}</h2>
+			  <div class="price_by_night">$${place.price_by_night}</div>
+			  </div>
+			  <div class="information">
+			  <div class="max_guest">${place.max_guest} Guest${
+						  place.max_guest !== 1 ? 's' : ''
+					  }</div>
+			  <div class="number_rooms">${place.number_rooms} Bedroom${
+						  place.number_rooms !== 1 ? 's' : ''
+					  }</div>
+			  <div class="number_bathrooms">${place.number_bathrooms} Bathroom${
+						  place.number_bathrooms !== 1 ? 's' : ''
+					  }</div>
+			  </div> 
+			  <div class="description">
+			  ${place.description}
+			  </div>
+				  </article>`
+		  )
       );
-    },
-    dataType: 'json'
+	  },
+	  dataType: 'json'
   });
 
-  // places where the description should be displayed
+  // sends POST request with checked amenities on button click.
   $('.filters button').bind('click', searchPlace);
   searchPlace();
 
-	 // places fetch results
-	 function searchPlace () {
+  // Toggles fetching, displaying, and hiding reviews on user click.
+  function searchPlace () {
     $.post({
 		  url: `${HOST}/api/v1/places_search`,
 		  data: JSON.stringify({
@@ -129,7 +130,7 @@ document.ready(function () {
 		  dataType: 'json'
     });
 	  }
-  // fetch review for each listing and add to page
+
 	  function fetchReviews (placeId) {
     $.getJSON(
 		  `${HOST}/api/v1/places/${placeId}/reviews`,

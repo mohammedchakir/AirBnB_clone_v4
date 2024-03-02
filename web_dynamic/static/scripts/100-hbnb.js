@@ -1,3 +1,4 @@
+// Tracks checkbox changes, sends POST request on button click.
 document.ready(function () {
   const HOST = 'http://127.0.0.1:5001';
   const amenities = {};
@@ -32,7 +33,7 @@ document.ready(function () {
     }
   });
 
-  // get API status from server and display it in the navbar
+  // Request http://0.0.0.0:5001/api/v1/status/
   $.getJSON('http://0.0.0.0:5001/api/v1/status/', (data) => {
     if (data.status === 'OK') {
       $('div#api_status').addClass('available');
@@ -41,7 +42,7 @@ document.ready(function () {
     }
   });
 
-  // fetch all places data from server and populate the map with
+  // Sends POST request, loops results, creates HTML articles.
   $.post({
     url: `${HOST}/api/v1/places_search`,
     data: JSON.stringify({}),
@@ -77,7 +78,7 @@ document.ready(function () {
     dataType: 'json'
   });
 
-  // places where the description should be displayed
+  // sends POST request with checked amenities on button click.
   $('.filters button').bind('click', searchPlace);
   searchPlace();
 });
