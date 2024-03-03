@@ -28,8 +28,7 @@ document.ready(function () {
       $('.amenities h4').text(Object.keys(amenities).sort().join(', '));
 	  } else {
       $('.locations h4').text(
-		  Object.keys(Object.assign({}, states, cities)).sort().join(', ')
-      );
+		  Object.keys(Object.assign({}, states, cities)).sort().join(', '));
 	  }
   });
 
@@ -90,7 +89,7 @@ document.ready(function () {
         amenities: Object.values(amenities),
         states: Object.values(states),
         cities: Object.values(cities)
-		  }),
+      }),
 		  headers: {
         'Content-Type': 'application/json'
 		  },
@@ -126,31 +125,29 @@ document.ready(function () {
 			  );
 			  fetchReviews(place.id);
         });
-		  },
-		  dataType: 'json'
+      },
+      dataType: 'json'
     });
-	  }
-
-	  function fetchReviews (placeId) {
+  }
+  function fetchReviews (placeId) {
     $.getJSON(
-		  `${HOST}/api/v1/places/${placeId}/reviews`,
-		  (data) => {
-		    $(`.reviews[data-place="${placeId}"] h2`)
-			  .text('test')
-			  .html(`${data.length} Reviews <span id="toggle_review">show</span>`);
-		    $(`.reviews[data-place="${placeId}"] h2 #toggle_review`).bind(
-			  'click',
-			  { placeId },
-			  function (e) {
-		        const rev = $(`.reviews[data-place="${e.data.placeId}"] ul`);
-		        if (rev.css('display') === 'none') {
-				  rev.css('display', 'block');
-				  data.forEach((r) => {
-		            $.getJSON(
-					  `${HOST}/api/v1/users/${r.user_id}`,
-					  (u) =>
-					    $('.reviews ul').append(`
-					  <li>
+		`${HOST}/api/v1/places/${placeId}/reviews`,
+		(data) => {
+		  $(`.reviews[data-place="${placeId}"] h2`)
+		    .text('test')
+		    .html(`${data.length} Reviews <span id="toggle_review">show</span>`);
+		  $(`.reviews[data-place="${placeId}"] h2 #toggle_review`).bind(
+		    'click',
+		    { placeId },
+		    function (e) {
+		      const rev = $(`.reviews[data-place="${e.data.placeId}"] ul`);
+		      if (rev.css('display') === 'none') {
+		        rev.css('display', 'block');
+		        data.forEach((r) => {
+		          $.getJSON(
+					  	`${HOST}/api/v1/users/${r.user_id}`, (u) =>
+					  	  $('.reviews ul').append(`
+					  	<li>
 						<h3>From ${u.first_name + ' ' + u.last_name} the ${
 						  r.created_at
 						}</h3>
@@ -167,5 +164,5 @@ document.ready(function () {
 		  },
 		  'json'
     );
-	  }
+  }
 });
